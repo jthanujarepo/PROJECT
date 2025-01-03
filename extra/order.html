@@ -1,0 +1,74 @@
+{% extends 'new/Main.html'%}
+{% block content %}
+{% comment %} {% load product_tags %} {% endcomment %}
+
+<table class="table table-bordered" style="width:90%;margin:150px auto;">
+    <tr>
+        <th>Customer</th>
+        <th>Books</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Total Amount</th>
+        <th>Date</th>
+    </tr>
+    {% for i in order %}
+    <tr>
+        <td>{{request.user}}</td>
+        <td>{{i.product.title}}</td>
+        <td class="qty1">{{i.product_qty}}</td>
+        <td>{{i.total_cost}}</td> 
+        {% if i.total_cost > 1000 %}
+        <td>10%</td>
+        {% else %}
+        <td>No Discount Available</td>
+        {% endif %}
+      
+        {% if i.total_cost > 1000 %}
+        <td id="total" class="totalamt">0</td>
+        {% else %}
+        <td class="totalamt">{{i.total_cost}}</td>
+        {% endif %}
+         <td>{{i.created}}</td>
+    </tr>
+    Amt = {{i.total_cost}} 
+    {% endfor %} 
+    <tr>
+        <td></td>
+        <td></td>
+        <td id="qty">0</td>
+        <td></td> 
+        <td >Total Amount</td>
+        <td id="net">0</td>
+        <td><a href="#" class="btn btn-success">Proccede</a></td>
+    </tr>
+</table>
+
+<script>
+    
+    amt = 1356;
+    discount = 10;
+    res = amt - (amt * discount / 100); 
+    document.getElementById("total").innerHTML = res; 
+ 
+
+        {% comment %} const nodes = document.querySelectorAll('.totalamt');
+        const arr = Array.from(nodes);
+        const res1 = arr.reduce((acc,curr) => {
+            return acc += Number(curr.textContent) },0);
+        document.getElementById("net").innerHTML= +res1;  {% endcomment %}
+
+ 
+
+     const nodes = document.querySelectorAll('.qty1');
+     const arr = Array.from(nodes);
+     const res2 = arr.reduce((acc,curr) => {
+        return acc += Number(curr.textContent) },0);
+     document.getElementById("qty").innerHTML= +res2; 
+
+</script>  
+
+{% endblock content %}
+
+{% comment %} 4566*10/100=4566-456.6= 4109. 4 {% endcomment %}
+                      

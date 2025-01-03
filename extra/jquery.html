@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <title>Document</title>
+    <script>
+     $(document).ready(function(){
+         $("button").click(function(){
+           $.get("text.txt", function(data, status){
+             alert("Data: " + data + "\nStatus: " + status);
+           });
+         });
+       });
+
+      
+    // $.get( 
+    //     "text.txt",
+    //   function(x){
+    //     // alert("text"+x)
+    //     // document.getElementById("id1").innerText="text"+ x
+    
+        
+    // });
+    $.get(
+        "text.txt",
+         function(data){
+            alert("msg" +data)
+        });
+ x=[1,2,4,6,8,70,57]
+ for(var i=0;i<=x.length;i++){
+console.log(x[i])
+ }
+ var name="ganga"
+  function fun(){
+  var  name="priya"
+    console.log(name)
+  }      
+  console.log(name)
+  fun()
+x=10
+  for(var i=0;i<=x;i++){
+    console.log("for loop",i)  
+  }
+
+  x=1
+  while(x<=10){
+    console.log("while loop",x)
+    x++;
+
+  }
+  x=16
+  function sqr(){
+    y=x*x
+    
+    console.log(y)
+   
+
+  }
+  var x1=0;
+  var x2=1
+  var sum=0
+  // function fun(){
+
+    for(var i=0;i<=10;i++){
+    sum=x1+x2;
+    console.log(x1)
+    x1=x2;
+    x2=sum
+  }
+  sqr()
+  // fun()
+      </script>
+</head>
+<body>
+<!-- x= <input type="number" id="id1"> -->
+<button>click</button>
+</body>
+</html>

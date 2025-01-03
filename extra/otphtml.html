@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentnew</title>
+</head>
+<body>
+<form method="POST">
+<p>working</p>
+{{ obj.username}}
+{% comment %} {% if obj %} {% endcomment %}
+{% comment %} {{ form }} {% endcomment %}
+   <h2 id="demo">Enter Your OTP </h2>
+   {% comment %} <input type="number" name="" id="demo3" value={{otp}}  hidden> {% endcomment %}
+   <input type="number" name="" id="demo3" value={{form1.obj.otp}}>
+
+
+   <div>
+    <input type="number" name="" id="demo2" maxlength="4" min="0" max="9" style="width:100px"  ><br><br>
+    <input type="submit" name="" id="" onclick="func1()">
+   </div> 
+  </form>
+   <script>
+   var x = document.getElementById("demo").style.color="red";
+   var y=Number(document.getElementById("demo3").value);
+   console.log(y)
+   function func1(){
+    var y=Number(document.getElementById("demo3").value),
+    z=Number(document.getElementById("demo2").value);  
+      if (y == z){
+       console.log("success")
+      }
+      else{
+        console.log("elseworking")
+      }
+      }
+   </script>
+   {% comment %} {% endif %} {% endcomment %}
+</body>
+
+</html>

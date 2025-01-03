@@ -1,0 +1,60 @@
+{% extends 'new/Main.html'%}
+
+{% comment %} {% include 'new/message.html'%} {% endcomment %}
+
+{% block content %}
+
+{% if status %} 
+
+<section class="bg-light py-4" style="margin-top:70px">
+    <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">Cart Items</h4>
+            <hr style="border-color:darkgray">
+        </div>
+
+        <table class="table table-bordered">
+            <tr>
+                <th>Image</th>
+                <th>Product Name</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>Remove</th>
+            </tr>
+            {% for i in cart %}
+            <tr>
+                <form method="post" action="">
+                <td><img src="/{{i.product.product_img}}" height="75px" alt="not"></td>
+                <td>{{i.product.title}}</td>
+                <td>{{i.product.original_price}}</td>
+                <td class="qty1">{{i.product_qty}}</td>
+                <td class="amt">{{i.total_cost}}</td>
+                {% comment %} <input type="submit" value="BuyNow"/> {% endcomment %}
+                <td><a href="{% url 'remove_cart' i.id%}" onclick="return confirm('Are you sure to remove')" class="btn btn-danger" ><i class="fa fa-trash "></i>Remove</a></td>    
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'order' %}" class="btn btn-success" style="margin-left:85%">Checkout</a>
+    </div> 
+    </div>
+</section>   
+{% endif %}
+
+
+{% if error %}
+{% for msg in messages %}
+<div class="alert alert-info alert-dismissible fade show" role="alert" style="margin-top:100px;text-align:center;font-size:22px"> 
+    {{msg}}
+<div class="btn-close"></div>
+</div> 
+{% endfor %} 
+
+{% endif %}
+
+
+
+ 
+{% endblock content%}

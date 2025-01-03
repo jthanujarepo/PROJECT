@@ -1,0 +1,37 @@
+{% extends 'new/Main.html' %}
+{% comment %} {% include 'nav.html' %} {% endcomment %}
+{% comment %} {% load static %} {% endcomment %}
+{% comment %} <link rel="stylesheeet" href="{% static 'css/style.css' %}"> {% endcomment %}
+
+
+<br>
+{% block content %}
+<section class="bg-light py-4" id="categeroyid">
+<div class="container">
+    <div class="row">
+        <div class="col-12" >
+            <h4 id="ph4">{{categeroy_title}} Books</h4>
+            <hr id="hr">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">HOME</a></li>
+                {% comment %} <li class="breadcrumb-item"><a href="{% url 'product_details' %}">collections</a></li> {% endcomment %}
+            </ol>
+        </div>
+        {% for a in products %}
+     <div class="col-md-4 col-lg-3" > 
+      <div class="card my-3" id="categeroydiv"> 
+        <img src="/{{a.product_img}}" alt="not found" class="card-image-top" id="cimg">
+        {% comment %} <a href="{% url 'collectionsnew' a.title%}"></a>  {% endcomment %}
+        <a href="{% url 'product_details' categeroy_title a.title%}" id="a"> 
+        <div class="card-body">
+            <h6 class="card-title text-primary">{{a.title}}</h6>
+            <p class="card-text text-danger" id="price">Rs.{{a.original_price}}</p>
+        </div>
+        </a>
+      </div>
+     </div>
+       {% endfor %}
+    </div>
+</div>
+</section>
+{% endblock content%}

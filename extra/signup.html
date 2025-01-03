@@ -1,0 +1,17 @@
+{% extends 'designform.html'%}
+{% load crispy_forms_tags%}
+
+{% block content %}
+{% include 'message.html'%}
+
+<form method="POST">
+  <h1>signupForm</h1>
+    {% csrf_token%}
+    {{sform|crispy}}
+  <input type="submit" value="SUBMIT">
+</form>
+{% if status %}
+<h2>{{user.first_name}}</h2>
+{% endif %}
+
+{% endblock content %}

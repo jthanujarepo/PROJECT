@@ -1,0 +1,26 @@
+{% extends 'new/Main.html' %}
+{% block content %}
+<div class="col-md-5" style="margin-top:100px">
+    <div class="card shadow">
+        <div class="card-body" style="border:2px solid gray">
+            <h5 id="id5"> Order Summary</h5>
+            <hr>
+         {% if  odt %}
+        <form method="post" action="/order1">
+
+
+        <h4 style="color:darkorange"> Quantity =&nbsp;<span style="color:aqua">{{odt.Qty}}</span></h4>
+        <h4 style="color:darkorange">Grand total =&nbsp;<span style="color:aqua">{{odt.Grand_total}}</span></h4>
+        {%csrf_token%}
+        <input type="submit" value="Order Now"/>
+        </form>
+        
+        {% endif %}
+        {% if success %}
+            <h2>Order successfully place </h2>
+        {% endif %}
+        </div>
+    </div>
+</div>  
+
+{% endblock %}     

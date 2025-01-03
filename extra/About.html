@@ -1,0 +1,119 @@
+{% extends 'new/Main.html' %}
+{% comment %} {% include 'nav.html' %} {% endcomment %}
+
+{% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 
+<style>
+.para{
+      color:blue;
+      font-size: 23px;
+      margin-left:10px;
+    }
+    .class1{
+        width:80%;
+        border:2px solid gray;
+        height:390px;
+        margin:50px auto;
+    }
+    h2{
+        color:coral;
+        text-shadow:3px 3px 3px black;
+        font-family:Lucida Calligraphy;
+        text-align: center;
+        font-size:35px;
+        
+    }
+    #id1{
+        margin-top:80px;
+    }
+    h2:hover{
+       color:cadetblue;
+    }
+p:hover{
+    color:orange;
+}
+</style> {% endcomment %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<h2 id="id1">About</h2>
+<h2 style="color:violet;margin-top:20px;text-align:center">Online Bookstore</h2>
+{% comment %} <div class=""> {% endcomment %}
+<p class="text-info" style="margin-left:50px;font-size:20px">Through this Online Bookstore customers can purchase books online.
+        The user can login using his account details or new customers can set up account very quickly.
+     Where users can enter their details like name,contact information and shipping address.</p>
+<p class="text-primary" style="margin-left:50px;font-size:20px">If the user would like to know the details about a book he can click on the title from where he will be directed to a Book description page.</p>
+<p class="text-primary"style="margin-left:50px;font-size:20px">If the user wants to change his personal account information then he can update his selected fields and the entire data will be updated in the Database throug an update query.   </p>
+<p class="text-primary" style="margin-left:50px;font-size:20px">Here the books are separated into different categeries like Fiction Autobiography Novels Stories Nonfiction Biography etc.</p>
+    
+{% comment %} </div> {% endcomment %}
+
+{% comment %} <section class="bg-light py-4 ">
+    <div class="container" > 
+         <div class="row">
+            <div class="col-12">
+            <h4 class="mb-3">Books Collections</h4>
+            <hr style="border-color:gray;">
+         </div> 
+
+     {% comment %} {% for i in obj %}
+     <div class="col-md-4 col-lg-3"> 
+      <div class="card my-3"> 
+        <img src="{{i.img}}" alt="not found" class="card-image-top" style="height:160px;" >
+        <a href="{% url 'collections'  i.title  %}"></a> 
+        <div class="card-body">
+            <h6 class="card-title text-primary" style="margin-top:-60px;">{{i.title}}</h6>
+            <p class="card-text">Click to see more details</p>
+        </div>
+      </div>
+     </div>
+    {% endfor %} {% endcomment %}
+    {% comment %} <h4>hello</h4>
+    {% for i in categeroy %}
+    <div class="col-md-4 col-lg-3">
+        <div class="card my-3" style="height:400px">
+            <img src="{{i.Image}}" alt="book" class="card-image-top " style="height:170px"/>
+            <br>
+            <a href="{% url 'collectionsnew8' i.Title %}"style="text-decoration:None"> 
+            <div class="card-body">
+                <h5 class="card-title text-primary" >{{i.Title}}</h5>
+                <p class="card-text text-dark">{{i.Description}}</p>
+            </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+</section> {% endcomment %} 
+<section class="bg-light py-4" >
+    <div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3">Books Categeries</h4>
+            <hr style="border-color:darkgray">
+        </div>
+        {% for i in categeroy %}
+        <div class="col-md-4 col-lg-3">
+            <div class="card my-3" style="height:400px">
+                <img src="{{i.Image}}" alt="book" class="card-image-top " style="height:170px"/>
+                <br>
+                <a href="{% url 'collectionsnew8' i.Title %}"style="text-decoration:None"> 
+                <div class="card-body">
+                    <h5 class="card-title text-primary" >{{i.Title}}</h5>
+                    <p class="card-text text-dark">{{i.Description}}</p>
+                </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    
+    </div>
+    </section>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% load static %}
+<body>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value = "Update"/>
+</form>
+{% if msg %}
+<h2>{{msg}}</h2>
+{% endif %}
+<div>
+    {% if img %}
+        {% for m in img %}
+        <h2>{{m.name}}</h2><br/>
+        <img src="/{{m.new_image}}" height="300" width="300"/><br/>
+        {% endfor %}
+    {% endif %}
+</div>
+</body>

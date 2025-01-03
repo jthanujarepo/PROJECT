@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   {% if status %}
+   <div class="container" style="border:2px solid gray;">
+       <p style="text-align:center; font-size:23px"> Hello {{odt.user}}</p>
+       <h3 style="margin-left:70px">Your ordered items Are </h3>
+       <h3 style="margin-left:70px;color:blue">order date <span>{{odt.id}}</span> </h3>
+       <hr style="border :1px solid gray">
+     
+       <table border="2" style="width:600px;height:200px;margin:10px auto;" cellspacing="10px" cellpadding="30px">
+        <tr style="font-size:20px;color:tomato">
+           <th>UserId</th>
+           <th>No.of Items</th>
+           <th>Total</th>
+        </tr>
+       {% comment %} {% for a in obj1 %} {% endcomment %}
+        <tr >
+           <td>{{odt.user_id}}</td>
+           <td>{{odt.Qty}}</td>
+           <td>{{odt.Grand_total}}</td>
+        </tr>
+       {% comment %} {% endfor %} {% endcomment %}
+        <tr> 
+           <th colspan=2>GrandTotal</th>
+           <!-- <td></td> -->
+           <td>{{odt.Grand_total}}</td>
+        </tr>
+
+       </table>
+       
+   </div>
+{% endif %} 
+</body>
+</html>

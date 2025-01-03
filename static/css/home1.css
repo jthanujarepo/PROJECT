@@ -1,0 +1,112 @@
+*{
+    margin:0;
+    padding:0;
+}
+.img{
+    background-size: cover;
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    /* opacity: 1.2; */
+    /* top:70px; */
+}
+.wrapper{
+    position: fixed;
+    background-color: white;
+    top:0;
+    right:0;
+    left: 0;
+    box-sizing: border-box;
+    box-shadow: 8px 8px 8px grey;
+    padding:5px 10px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+.wrapper .menu li{
+    list-style: none;
+}
+.wrapper .menu  li{
+    position: relative;
+    float:left;
+    margin-left: 10px;
+}
+.wrapper .menu li a{
+    font-size:17px;
+    padding:15px;
+    color:#333;
+    display:block;
+    margin-left:10px;
+}
+.wrapper .menu  li a:hover{
+    background:gray;
+    color:white;
+}
+.wrapper .menu li ul li a:hover{
+    background-color:unset;
+    color:black;
+}
+a{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.wrapper .menu li ul{
+    position:absolute;
+    left:0;
+    width:200px;
+    background: white;
+
+}
+.wrapper .menu li ul:hover{
+    position:absolute;
+    left:0;
+    width:200px;
+    /* background: white; */
+}
+.wrapper .menu li ul li{
+    width:90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom:1px solid black;
+    line-height: 10px;
+}
+.dropdown{
+    display:none;
+}
+/* .menu li :hover>ul{
+    display:block;
+} */
+.menu li:hover>.dropdown{
+
+    display:block;
+}
+.menu li #profile{
+    color:rgb(165, 41, 165);
+    background-color:unset;
+    font-family:Lucida Calligraphy;
+    font-weight: bold;
+    text-shadow:2px 2px 2px aqua;
+    /* border:3px dotted deeppink */
+}
+.second{
+    position:absolute;
+    top:120px;
+    /* height:100vh; */
+    /* left:20px; */
+}
+h2{
+    color:orangered;
+    font-size: 90px;
+    font-weight: bold;
+    margin-top: 100px;
+    font-family:Lucida Calligraphy;
+    text-shadow:4px 4px 4px white;
+}
+p{
+    font-size:35px;
+    color:blueviolet;
+    font-weight: bold;
+    margin-left:250px;
+    text-shadow:2px 2px 2px white;
+}

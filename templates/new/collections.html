@@ -1,0 +1,41 @@
+{% extends 'new/Main.html'%}
+
+{% block content %}
+{% comment %} {% extends 'nav.html'%} {% endcomment %}
+<h2 style="color:indigo;margin-top:90px;text-align:center">Online Bookstore</h2>
+{% comment %} <div class=""> {% endcomment %}
+<p class="text-info" style="margin-left:50px;font-size:20px">Through this Online Bookstore customers can purchase books online.
+        The user can login using his account details or new customers can set up account very quickly.
+     Where users can enter their details like name,contact information and shipping address.</p>
+<p class="text-primary" style="margin-left:50px;font-size:20px">If the user would like to know the details about a book he can click on the title from where he will be directed to a Book description page.</p>
+<p class="text-primary"style="margin-left:50px;font-size:20px">If the user wants to change his personal account information then he can update his selected fields and the entire data will be updated in the Database throug an update query.   </p>
+<p class="text-primary" style="margin-left:50px;font-size:20px">Here the books are separated into different categeries like Fiction Autobiography Novels Stories Nonfiction Biography etc.</p>
+    
+<section class="bg-light py-4" style="margin-top:70px">
+<div class="container">
+<div class="row">
+    <div class="col-12">
+        <h4 class="mb-3">Books Categeries</h4>
+        <hr style="border-color:darkgray">
+    </div>
+    {% for i in categeroy %}
+    <div class="col-md-4 col-lg-3">
+        <div class="card my-3" style="height:400px">
+            <img src="/{{i.Image}}" alt="book" class="card-image-top " style="height:170px"/>
+            <br>
+            <a href="{% url 'collections' i.Title %}"id="a"> 
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{i.Title}}</h5>
+                <p class="card-text text-dark">{{i.Description}}</p>
+            </div>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+</div>
+</section>
+{% endblock content%}
+

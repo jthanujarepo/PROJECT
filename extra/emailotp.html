@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% comment %} {% if otpform %} {% endcomment %}
+    <form method="POST">
+      {% csrf_token %}
+    
+          <h3>Registration</h3>
+        
+          <label for="" >Username</label>
+                    {{form.username}}<br>
+          <label for="">Email</label>
+                    {{form.email}}
+       
+          <input type="submit" >
+       
+    </form>
+    {% comment %} {% endif %}  {% endcomment %}
+
+    {% if form.errors.username  %}
+    <label for="" class="text-danger">{{form.errors.username}}</label>
+    {% endif %}
+
+    {% if form.errors.email  %}
+    <label for="" class="text-danger">{{form.errors.email}}</label>
+    {% endif %}
+
+
+
+    {% if obj1 %}
+{% comment %} {{ obj }} {% endcomment %}
+   <h2 id="demo">Enter Your OTP here</h2>
+   {% comment %} <input type="number" name="" id="demo3" value={{otp}}  hidden> {% endcomment %}
+   <input type="number" name="" id="demo3" value={{obj.otp}} >
+
+
+   <div>
+    <input type="number" name="" id="demo2" maxlength="4" min="0" max="9" style="width:100px"  ><br><br>
+    <input type="submit" name="" id="" onclick="func1()">
+   </div> 
+
+   
+   
+   <script>
+   var x = document.getElementById("demo").style.color="red";
+   var y=Number(document.getElementById("demo3").value);
+   console.log(y)
+   function func1(){
+    var y=Number(document.getElementById("demo3").value),
+    z=Number(document.getElementById("demo2").value);  
+      if (y == z){
+       console.log("success")
+      }
+      else{
+        console.log("elseworking")
+      }
+      }
+   </script>
+   {% endif %}
+
+</body>
+</html>

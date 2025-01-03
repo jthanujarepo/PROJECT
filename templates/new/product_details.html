@@ -1,0 +1,113 @@
+{% extends 'new/Main.html' %}
+{% comment %} {% load static %} {% endcomment %}
+{% comment %} <link rel="stylesheeet" href="{% static 'css/style.css' %}"> {% endcomment %}
+{% comment %} {% include 'nav.html' %} {% endcomment %}
+
+{% block content %}
+<section class="bg-light py-4" id="sectionpid">
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3" id="ph4">{{products}} details</h4>
+            <hr id="hr">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'collections' products.categeroy.Title %}">Collections</a></li>
+                </ol>           
+        </div>
+        <div class="col-4" >
+            <img src="/{{products.product_img}}" class="card-image-top" id="pimg" alt="categeris">
+        </div> 
+        <div class="col-8">
+            <h5 id="h5">{{products | upper}}</h5> 
+            <p>{{products.description}}</p>
+
+            <h6 class="my-2 text-danger"><span  style="color:darkblue;font-size:20px; width :120px;display: inline-block;"> Price :</span>{{products.original_price}}</h6>
+            <h6 class="my-2 text-danger"><span  style="color:darkblue;font-size:20px;width:120;display:inline-block">Quantity :</span>{{products.Quantity}}</h6>
+            
+            <div class="my-3">
+                {% if products.Quantity > 0 %}
+              
+                <input type="hidden" value="{{products.id}}" id="pid">
+                <p>
+                    <div class="input-group" style="width:150px">
+                    <button class="input-group-text bg-info text-light" id="btnMinus"><i class="fa fa-minus"></i></button>    
+                    <input type="text" class="form-control text-center" name="qty" value="1" id="txtQty">
+                    <button class="input-group-text bg-info text-light" id="btnPlus"><i class="fa fa-plus"></i>  </button>
+                    </div>
+                </p>
+                <button class="btn btn-warning text-light"style="font-size:20px"id="btnCart" ><i class="fa fa-cart" >Add to cart</i></button>
+                {% else %}
+                <button class="btn btn-danger"><i class="fa fa-minus"></i>out of stock</button>
+                {% endif %}
+                {% comment %} <button class="btn btn-danger"><i class="fa fa-heart"></i></button> {% endcomment %}
+
+
+        
+    </div>
+</div> 
+</section>
+<script>
+document.addEventListener("DOMContentLoaded",function(event){
+    const btnPlus=document.getElementById("btnPlus");
+    const btnMinus=document.getElementById("btnMinus");
+    const txtQty=document.getElementById("txtQty");
+    const pid=document.getElementById("pid");
+    //const tkn=document.querySelector('[name="csrfmiddlewaretoken"]').value; 
+    const btnCart=document.getElementById("btnCart"); 
+    
+    btnPlus.addEventListener("click",function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+        //console.log(qty);
+        if(qty<10){
+            qty++;
+            txtQty.value=qty;
+        }
+    });
+    btnMinus.addEventListener("click",function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+        //console.log(qty);
+        if(qty>1){
+            qty--;
+            txtQty.value=qty;
+        }
+    });
+
+    btnCart.addEventListener("click",function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty)?0:qty;
+        //console.log(qty);
+        if(qty>0){
+           let postObj = {
+            'product_qty' : qty,
+            'pid' : pid.value
+           
+           }
+          // console.log(postObj);
+           fetch("/addtocart",{
+            method :'POST',
+            credentials: 'same-origin',
+            headers:{
+                'Accept':'application/json',
+                'X-Requested-With':'XMLHttpRequest',
+                'X-CSRFToken':'{{ csrf_token }}',
+            },
+            body: JSON.stringify(postObj)   
+           }).then(response => {
+            return response.json();
+           }).then(data => {
+            //console.log(data);
+            alert(data['status'])
+           });
+
+        }else{
+            alert("please enter the quantity");
+        }  
+    });
+});
+
+</script>
+
+{% endblock content%} 

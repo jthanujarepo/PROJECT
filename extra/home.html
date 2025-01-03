@@ -1,0 +1,64 @@
+{% comment %} {% include 'menunav.html'%} {% endcomment %}
+{% include 'new/nav.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+<link rel="stylesheet" href="{% static 'css/home1.css' %}"/>
+    
+   {% comment %} <img src="/static/Images/bookstore1.jpg" alt=""> {% endcomment %}
+{% block title%}hello{% endblock title%}
+  {% comment %} <div class="wrapper">
+    <a href="#">logo</a>
+    <!-- <a href=""><img src="/static/Images/logo1.jpg" alt=""></a> -->
+
+    <ul class="menu">
+        <li><a href="#">home</a></li>
+        <li><a href="#">login</a></li>
+        <li><a href="#">about</a></li>
+        <li id="id1"><a href="#">categeroy</a>
+            <ul class="dropdown">
+                <li><a href="#">fiction</a></li>
+                <li><a href="#">autobiography</a></li>
+                <li><a href="#">biography</a></li>
+                <li><a href="#">story</a></li>
+                <li><a href="#">novels</a></li>
+                <li><a href="#">non-fiction</a></li>
+            </ul>
+        </li>
+        
+    </ul>
+    <a href="#">BOOKSTORE</a>
+  </div> {% endcomment %}
+  
+  {% block content %} 
+  <div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        <h3>books</h3>
+        {% csrf_token %}
+        {{bookform}}
+        <input type="submit" value="Add book"/>
+    </form>
+    <div class="container">
+        <table class="table bordered table-striped">
+            <tr>
+                <th>Title</th>
+                <th>No.of.Pages</th>
+                <th>Price</th>
+                <th>Image</th>
+
+            </tr>
+            {% for b in books %}
+            <tr>
+                {% comment %} <td><a href="/book/{{b.id}}">{{b.title}}</a></td> {% endcomment %}
+                <td><a href="/book/{{b.title}}">{{b.title}}</a></td>
+                <td>{{b.no_of_pages}}</td>
+                <td>{{b.price}}</td>
+                <td>{{b.cover_page}}</td>
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+  </div>
+  <h4>welcome</h4>
+{% endblock content%}
