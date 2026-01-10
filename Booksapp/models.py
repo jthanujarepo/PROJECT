@@ -110,3 +110,20 @@ class contact(models.Model):
     Email=models.EmailField(max_length=20)
     Subject=models.CharField(max_length=40)
     Message=models.TextField()
+
+
+from django.db import models
+
+# class RecordDetails(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     name = models.CharField(max_length=100)
+#     email = models.EmailField()
+#     address = models.TextField()
+#     city = models.CharField(max_length=50)
+#     mobile = models.CharField(max_length=15)
+
+#     total_amount = models.IntegerField()
+#     order_date = models.DateTimeField(auto_now_add=True)
+
+#     def __str__(self):
+#         return self.name

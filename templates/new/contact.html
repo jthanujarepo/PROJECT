@@ -1,92 +1,90 @@
-{% comment %} {% extends 'Main.html'%} {% endcomment %}
 
-{% comment %} {% extends 'designform.html'%} {% endcomment %}
 
-{% load crispy_forms_tags%}
+{% extends 'new/Main.html' %}
+{% load static %}
 
-{% comment %} <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> {% endcomment %}
-    <style>
-        .div1{
-            display: flex;
-        }
-        .div2{
-            width:500px;
-            height:600px;
-            border:2px solid gray;
-            margin-left:240px;
-            margin-top: 50px;
-            background:lightblue;
-        }
-        .div3{
-            width:500px;
-            height:600px;
-            border:2px solid gray;
-            margin-top: 50px;
-        }
-        label{
-            color:crimson;
-            margin-left:20px;
-            font-size:25px;
-            margin-top:10px;
-        }
-        input{
-            {% comment %} margin-top:0px; {% endcomment %}
-            line-height:30px;
-            width:350px;
-            margin-left:20px;
-            margin-bottom:10px;
-            border:none;
-            border-bottom:2px solid blue;
-            background:none;
-
-        }
-        #input{
-            width:200px;
-            border:2px solid black;
-            margin-top:20px;
-            {% comment %} margin-left:70px; {% endcomment %}
-            background:orange;
-            color:white;
-            font-size:23px;
-            border-radius:15px;
-
-        }
-        h3{
-            color:indigo;
-            text-align:center;
-            text-transform:uppercase;
-            font-size:20px;
-        }
-
-    </style>
 {% block content %}
-    <div class="div1">
-        <div class="div2">
-            <h3>Contact form</h3>
-            <form method="POST">
-                {% csrf_token %}
-                {{cform|crispy}}
-                <input type="submit" value="SUBMIT" id="input">
-            </form>
-        </div>
-        <div class="div3">
-        {% if mail %}
-            <span class="text-success">Mail sent to user</span>
-        {% comment %} {% else %}
-            <span class="text-danger">Having trouble to submit try again!</span> {% endcomment %}
-        {% endif %}
-        </div>
-        {% if error %}
-            <script>alert("error occured try again");</script>
-        {% endif %} 
-    </div>
-{% endblock content %}
+
+<style>
+.contact-container {
+    width: 60%;
+    margin: 60px auto;
+}
+.contact-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+button {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.success {
+    color: green;
+    margin-bottom: 15px;
+}
+.error {
+    color: red;
+    margin-bottom: 15px;
+}
+</style>
+
+<div class="contact-container">
+
+    <h2>Contact Us</h2>
+
+    <!-- SUCCESS MESSAGE -->
+    {% if mail %}
+        <p class="success">
+            Thank you {{ obj.Name }}! Your message has been sent successfully.
+        </p>
+    {% endif %}
+
+    <!-- FAILURE MESSAGE -->
+    {% if mail == False %}
+        <p class="error">
+            Sorry {{ obj.Name }}, your message could not be sent.
+        </p>
+    {% endif %}
+
+    <!-- ERROR MESSAGE -->
+    {% if error %}
+        <p class="error">
+            Something went wrong. Please try again later.
+        </p>
+    {% endif %}
+
+    <!-- CONTACT FORM -->
+    <form method="post">
+        {% csrf_token %}
+
+        <label>Name</label>
+        <input type="text" name="Name" required>
+
+        <label>Email</label>
+        <input type="email" name="Email" required>
+
+        <label>Subject</label>
+        <input type="text" name="Subject" required>
+
+        <label>Message</label>
+        <textarea name="Message" rows="4" required></textarea>
+
+        <button type="submit">Send Message</button>
+    </form>
+
+</div>
+
+{% endblock %}
 
 
 
+
+{% comment %} ##############  its old content inside cart.html############ {% endcomment %}

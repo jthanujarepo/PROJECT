@@ -22,6 +22,9 @@ urlpatterns = [
     # path('checkout',views.checkout,name='checkout1'),
     path('order1',views.orderview,name="order"),
 
+    # path('order1<int:id>',views.orderview,name="order"),
+
+
     path('contact/',views.contactview,name='contact'),
 
 

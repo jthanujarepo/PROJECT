@@ -20,9 +20,9 @@
         {% for a in products %}
      <div class="col-md-4 col-lg-3" > 
       <div class="card my-3" id="categeroydiv"> 
-        <img src="/{{a.product_img}}" alt="not found" class="card-image-top" id="cimg">
+        <img src="/{{a.product_img}}" alt="not found" class="card-image-top" id="cimg" style="height:100px">
         {% comment %} <a href="{% url 'collectionsnew' a.title%}"></a>  {% endcomment %}
-        <a href="{% url 'product_details' categeroy_title a.title%}" id="a"> 
+        <a href="{% url 'product_details' categeroy_title a.title%}" id="a">
         <div class="card-body">
             <h6 class="card-title text-primary">{{a.title}}</h6>
             <p class="card-text text-danger" id="price">Rs.{{a.original_price}}</p>

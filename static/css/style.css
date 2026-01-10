@@ -23,7 +23,7 @@
     border:1px solid gray;
 }
 #cimg{
-    height: 160px;
+    height: 180px;
     
 }
 #sectionpid{
@@ -48,9 +48,16 @@
 }
 #categeroyid{
     margin-top:90px;
+    border: 1px solid blue;
+
 }
 #categeroydiv{
-    height:270px;
+    height:250px;
+    
+}
+#categeroydiv #cimg{
+    width:120px;
+    height: 250px;
 }
 #a{
     text-decoration:None;

@@ -1,4 +1,5 @@
 {% extends 'new/Main.html' %}
+{% comment %} 
 {% block content %}
 <div class="col-md-5" style="margin-top:100px">
     <div class="card shadow">
@@ -23,4 +24,104 @@
     </div>
 </div>  
 
-{% endblock %}     
+{% endblock %}      {% endcomment %}
+
+
+
+{% comment %} {% extends 'new/Main.html' %} {% endcomment %}
+{% load static %}
+
+{% block content %}
+
+<style>
+.checkout-container {
+    width: 70%;
+    margin: 40px auto;
+}
+
+.checkout-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.checkout-box {
+    display: flex;
+    gap: 40px;
+}
+
+.billing, .summary {
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 15px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+</style>
+
+<div class="checkout-container">
+
+    <h2>Checkout</h2>
+
+    <div class="checkout-box">
+
+        <!-- BILLING DETAILS -->
+        <div class="billing">
+            <h3>Billing Details</h3>
+
+            <form method="post" action="/order1">
+                {% csrf_token %}
+
+                <label>Full Name</label>
+                <input type="text" name="name" required>
+
+                <label>Email</label>
+                <input type="email" name="email" required>
+
+                <label>Address</label>
+                <textarea name="address" rows="3" required></textarea>
+
+                <label>City</label>
+                <input type="text" name="city" required>
+
+                <label>Mobile Number</label>
+                <input type="text" name="mobile" required>
+
+                <button type="submit">Place Order</button>
+            </form>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="summary">
+            <h3>Order Summary</h3>
+
+            <p><strong>Total Books:</strong> {{odt.Qty }}</p>
+            {% comment %} <p><strong>book Price:</strong> ₹{{ book.original_price}}</p> {% endcomment %}
+
+            <hr>
+
+            <p><strong>Total:</strong> ₹{{ odt.Grand_total }}</p>
+            {% comment %} <p><strong>Total:</strong> ₹{{  book.total_amount }}</p> {% endcomment %}
+           
+            {% if success %}
+            <h2>Order successfully place </h2>
+        {% endif %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

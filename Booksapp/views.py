@@ -117,7 +117,7 @@ def product_details(request,ctitle,ptitle):
             messages.error(request,"No such product found")
             return redirect('collections')
     else:
-         messages.error(request,"no such categeroy found")
+         messages.error(request,"no such categeroy found nnn")
          return redirect('collections')
     
 def add_to_cart(request):
@@ -166,11 +166,21 @@ def cart_page(request):
 
 
     
-def remove_cart(request,cid):
-    cartitem=Cart.objects.get(id=cid)
+# def remove_cart(request,cid):
+#     cartitem=Cart.objects.get(id=cid)
+#     cartitem.delete()
+#     return redirect("/cart")    
+
+from django.shortcuts import get_object_or_404, redirect
+def remove_cart(request, cid):
+    cartitem = get_object_or_404(Cart, id=cid)
     cartitem.delete()
-    return redirect("/cart")    
-    
+    return redirect("/cart")
+
+# def remove_cart(request, cart_item_id):
+#     cart_item = get_object_or_404(CartItem, id=cart_item_id)
+#     cart_item.delete()
+#     return redirect('cart')    
     
 # def orderview(request):
 #     order=Cart.objects.filter(user=request.user)
@@ -209,6 +219,25 @@ def orderview(request):
                 obj1.delete()
                 return render(request,'new/checkout1.html',{"success":"order completed"})
             return render(request,'new/checkout1.html',context)
+
+
+
+
+# def orderview(request):
+#     book = RecordDetails.objects.filter(user=request.user)
+
+#     if request.method == "POST":
+#         RecordDetails.objects.create(
+#             name=request.POST['name'],
+#             email=request.POST['email'],
+#             address=request.POST['address'],
+#             city=request.POST['city'],
+#             mobile=request.POST['mobile'],
+#             total_amount=book.original_price
+#         )
+#         return redirect('order_success')
+
+#     return render(request, 'new/checkout1.html', {'book': book})
    
     
 
