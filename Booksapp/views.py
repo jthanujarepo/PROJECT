@@ -232,30 +232,72 @@ def remove_cart(request, cid):
 
 
 
+# def orderview(request):
+#             # cart=Cart.objects.filter(user=request.user) 
+#             obj1=Cart.objects.filter(user=request.user)
+#             Grand_total=0;
+#             qty = 0
+#             for i in obj1:
+#                 Grand_total += i.product.original_price *i.product_qty;
+#                 qty+=i.product_qty
+
+#             userorder = finalorder()
+#             userdetails = User.objects.get(username=request.user)
+#             userorder.user=userdetails
+#             userorder.Qty = qty
+#             userorder.Grand_total = Grand_total
+#             userorder.Status = True
+#             # print('display') #name displayed
+#             context = {"odt":userorder,"obj1":obj1,"status":True}   
+#             if request.method=="POST":
+#                 userorder.save()
+#                 obj1.delete()
+#                 return render(request,'new/checkout1.html',{"success":"order completed"})
+#             return render(request,'new/checkout1.html',context)
+
+
 def orderview(request):
-            # cart=Cart.objects.filter(user=request.user) 
-            obj1=Cart.objects.filter(user=request.user)
-            Grand_total=0;
-            qty = 0
-            for i in obj1:
-                Grand_total += i.product.original_price *i.product_qty;
-                qty+=i.product_qty
 
-            userorder = finalorder()
-            userdetails = User.objects.get(username=request.user)
-            userorder.user=userdetails
-            userorder.Qty = qty
-            userorder.Grand_total = Grand_total
-            userorder.Status = True
-            # print('display') #name displayed
-            context = {"odt":userorder,"obj1":obj1,"status":True}   
-            if request.method=="POST":
-                userorder.save()
-                obj1.delete()
-                return render(request,'new/checkout1.html',{"success":"order completed"})
-            return render(request,'new/checkout1.html',context)
+    if not request.user.is_authenticated:
+        return redirect('login')
 
+    cart_items = Cart.objects.filter(user=request.user)
 
+    if not cart_items.exists():
+        messages.error(request, "Your cart is empty")
+        return redirect('cart')
+
+    grand_total = 0
+    qty = 0
+
+    for item in cart_items:
+        grand_total += item.product.original_price * item.product_qty
+        qty += item.product_qty
+
+    userorder = finalorder()
+    userorder.user = request.user   # ✅ FIXED
+    userorder.Qty = qty
+    userorder.Grand_total = grand_total
+    userorder.Status = True
+
+    context = {
+        "odt": userorder,
+        "obj1": cart_items,
+        "status": True
+    }
+
+    if request.method == "POST":
+        try:
+            userorder.save()
+            cart_items.delete()
+            messages.success(request, "Order placed successfully")
+            return render(request, 'new/checkout1.html', {"success": "order completed"})
+        except Exception as e:
+            print("Order save error:", e)
+            messages.error(request, "Something went wrong. Please try again.")
+            return redirect('checkout')
+
+    return render(request, 'new/checkout1.html', context)
 
 
 # def orderview(request):
