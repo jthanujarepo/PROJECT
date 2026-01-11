@@ -43,7 +43,7 @@ urlpatterns = [
  
 
     path('user-auth/',include('rest_framework.urls')),
-    path("",include(rout.urls)),
+    # path("",include(rout.urls)),
     
     # path("",include('Cart.urls')),   #used when urls.py is in Store
     
