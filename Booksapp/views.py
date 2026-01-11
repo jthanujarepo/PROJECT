@@ -55,47 +55,81 @@ def login_page(request):
                 return redirect("/loginuser")
         return render(request,"new/loginnew.html")
 
-def userview(request): 
-    form=Customuserform()
-    if request.method=="POST":
-        form=Customuserform(request.POST)
-        if form.is_valid():
-           username=request.POST['username']
-           email=request.POST['email']
-        #    otp=""
-        #    for i in range(4):
-        #       otp+=str(r.randint(1,9))
+# def userview(request): 
+#     form=Customuserform()
+#     if request.method=="POST":
+#         form=Customuserform(request.POST)
+#         if form.is_valid():
+#            username=request.POST['username']
+#            email=request.POST['email']
+#         #    otp=""
+#         #    for i in range(4):
+#         #       otp+=str(r.randint(1,9))
           
-        #    print ("Your One Time Password is ")
-        #    print (otp)
-           subject = "Registration success"
-        #    message = f'hi {username} welcome to online bookstore and ur otp is '+str(otp)
-           message = f'hi {username} welcome to online bookstore  '
+#         #    print ("Your One Time Password is ")
+#         #    print (otp)
+#            subject = "Registration success"
+#         #    message = f'hi {username} welcome to online bookstore and ur otp is '+str(otp)
+#            message = f'hi {username} welcome to online bookstore  '
            
           
-        #    form.save()
-        #    mail_status=None
-           mail_status=send_mail(subject,message, 'jthanuja4@gmail.com',[email],
-            fail_silently=False,) 
-           form.save()
+#         #    form.save()
+#         #    mail_status=None
+#            mail_status=send_mail(subject,message, 'jthanuja4@gmail.com',[email],
+#             fail_silently=False,) 
+#            form.save()
         
-           if bool(mail_status):
-                # return render(request,"contact.html",{"mail":True,"obj":form})
-                messages.success(request,"Registration success you can now login ")
-                return redirect('login')
-           else:
-                return render(request,"contact.html",{"mail":False,"status":True,"obj":form})
+#            if bool(mail_status):
+#                 # return render(request,"contact.html",{"mail":True,"obj":form})
+#                 messages.success(request,"Registration success you can now login ")
+#                 return redirect('login')
+#            else:
+#                 return render(request,"contact.html",{"mail":False,"status":True,"obj":form})
            
-        # form.save()
-        # messages.success(request,"Registration success you can now login welcome")
-        # return redirect('/loginuser')
+#         # form.save()
+#         # messages.success(request,"Registration success you can now login welcome")
+#         # return redirect('/loginuser')
         
    
        
-    # return render(request,"otphtml.html",{"otp":otp,"status":True})
+#     # return render(request,"otphtml.html",{"otp":otp,"status":True})
     
-    return render(request,'new/register.html',{"form":form})
+#     return render(request,'new/register.html',{"form":form})
     
+
+
+def userview(request):
+    form = Customuserform()
+    if request.method == "POST":
+        form = Customuserform(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+
+            subject = "Registration success"
+            message = f"Hi {username}, welcome to online bookstore"
+
+            try:
+                mail_status = send_mail(
+                    subject,
+                    message,
+                    'jthanuja4@gmail.com',
+                    [email],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                print("Email error:", e)
+                mail_status = False
+
+            form.save()
+
+            messages.success(
+                request,
+                "Registration successful. You can now login."
+            )
+            return redirect('login')
+
+    return render(request, 'new/register.html', {"form": form})    
         
 def collections(request):
     categeroy=Categeroy.objects.filter(Status=0)
