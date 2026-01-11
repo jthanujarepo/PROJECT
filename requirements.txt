@@ -17,7 +17,7 @@ cssselect2==0.7.0
 cycler==0.12.1
 distlib==0.3.6
 dj-database-url==2.3.0
-Django==5.2
+Django==4.2
 django-classy-tags==4.1.0
 django-cms==3.11.3
 django-crispy-forms==1.14.0
@@ -52,7 +52,7 @@ fpdf==1.7.2
 gitdb==4.0.12
 GitPython==3.1.44
 greenlet==3.2.1
-gunicorn==23.0.0
+gunicorn
 html5lib==1.1
 idna==3.4
 itsdangerous==2.2.0
@@ -65,16 +65,16 @@ kiwisolver==1.4.8
 lxml==4.9.3
 Markdown==3.4.1
 MarkupSafe==3.0.2
-matplotlib==3.10.3
-mediapipe>=0.10.30
+matplotlib
+mediapipe
 
 ml_dtypes==0.5.1
 mysql-connector-python==9.3.0
 mysqlclient==2.2.0
 narwhals==1.37.1
-numpy==1.26.4
+numpy
 opencv-contrib-python==4.11.0.86
-opencv-python==4.11.0.86
+opencv-python
 opt_einsum==3.4.0
 packaging==23.1
 pandas==2.2.3
