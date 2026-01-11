@@ -23,6 +23,9 @@ from rest_framework import routers
 rout = routers.DefaultRouter()
 # rout.register(r'bookapi',BooksView)
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
@@ -49,3 +52,5 @@ urlpatterns = [
     
 ]
 
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
