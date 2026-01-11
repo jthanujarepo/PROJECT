@@ -62,14 +62,15 @@ def userview(request):
         if form.is_valid():
            username=request.POST['username']
            email=request.POST['email']
-           otp=""
-           for i in range(4):
-              otp+=str(r.randint(1,9))
+        #    otp=""
+        #    for i in range(4):
+        #       otp+=str(r.randint(1,9))
           
-           print ("Your One Time Password is ")
-           print (otp)
+        #    print ("Your One Time Password is ")
+        #    print (otp)
            subject = "Registration success"
-           message = f'hi {username} welcome to online bookstore and ur otp is '+str(otp)
+        #    message = f'hi {username} welcome to online bookstore and ur otp is '+str(otp)
+           message = f'hi {username} welcome to online bookstore  '
            
           
         #    form.save()
