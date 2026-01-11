@@ -65,16 +65,16 @@ kiwisolver==1.4.8
 
 Markdown==3.4.1
 MarkupSafe==3.0.2
-matplotlib
-mediapipe
+
+
 
 ml_dtypes==0.5.1
 mysql-connector-python==9.3.0
 mysqlclient==2.2.0
 narwhals==1.37.1
-numpy
+
 opencv-contrib-python==4.11.0.86
-opencv-python
+
 opt_einsum==3.4.0
 packaging==23.1
 pandas==2.2.3
